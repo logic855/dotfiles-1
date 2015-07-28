@@ -325,29 +325,39 @@ augroup END
 " ARROW KEYS ARE UNACCEPTABLE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <Left>  :echoe "Use h!"<CR>
-map <Right> :echoe "Use l!"<CR>
-map <Up>    :echoe "Use k!"<CR>
-map <Down>  :echoe "Use j!"<CR>
+"map <Left>  :echoe "Use h!"<CR>
+"map <Right> :echoe "Use l!"<CR>
+"map <Up>    :echoe "Use k!"<CR>
+"map <Down>  :echoe "Use j!"<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DELETE AND BACKSPACE KEYS ARE UNACCEPTABLE AS WELL
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-inoremap <Del> <Nop>
-inoremap <BS>  <Nop>
+"inoremap <Del> <Nop>
+"inoremap <BS>  <Nop>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Windows
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Smart way to move between panes
+map <leader><up> <C-w><up>
+map <leader><down> <C-w><down>
+map <leader><left> <C-w><left>
+map <leader><right> <C-w><right>
 
-" Instead of having to press 'ctrl-w h' to move to the window to the left, just press ctrl-h, etc.
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" window
+nmap <leader>sw<left>  :topleft  vnew<CR>
+nmap <leader>sw<right> :botright vnew<CR>
+nmap <leader>sw<up>    :topleft  new<CR>
+nmap <leader>sw<down>  :botright new<CR>
+" buffer
+nmap <leader>s<left>   :leftabove  vnew<CR>
+nmap <leader>s<right>  :rightbelow vnew<CR>
+nmap <leader>s<up>     :leftabove  new<CR>
+nmap <leader>s<down>   :rightbelow new<CR>"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -509,6 +519,7 @@ let g:html_indent_tags = 'li\|p'
 
 nnoremap <leader>m :CtrlP<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <C-B> :CtrlPBuffer<CR>
 nnoremap <leader>o :CtrlPMixed<CR>
 nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>] :CtrlPTag<CR>
@@ -565,6 +576,45 @@ command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins {{{
+call plug#begin('~/.vim/plugged')                               " start plugin manager
+Plug 'kien/ctrlp.vim'                                           " Fuzzy file searcher
+Plug 'rking/ag.vim'                                             " Fast grep replacement
+Plug 'jiangmiao/auto-pairs'                                     " Automatic bracket closing
+Plug 'editorconfig/editorconfig-vim'                            " Settings based on .editorconfig file
+Plug 'tpope/vim-fugitive'                                       " GIT integration
+Plug 'haya14busa/incsearch.vim'                                 " Improved incremental searching
+Plug 'ervandew/supertab'                                        " Tab completion
+Plug 'scrooloose/syntastic'                                     " Syntax checking
+Plug 'godlygeek/tabular'                                        " Table formatting
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }            " JS code analysis
+Plug 'tpope/vim-unimpaired'                                     " Miscellaneous commands
+Plug 'tpope/vim-abolish'                                        " Working with variants of a world
+Plug 'bling/vim-airline'                                        " Hip status bar
+Plug 'tpope/vim-commentary'                                     " (Un)commenting lines
+Plug 'Lokaltog/vim-easymotion'                                  " Additional motions
+Plug 'justinmk/vim-sneak'                                       " Two-letter alternative to 'f'
+Plug 'ajh17/vim-fist'                                           " Easy creation of Github gists
+Plug 'airblade/vim-gitgutter'                                   " Column with line changes
+Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } " Context coloring for javascript
+Plug 'pangloss/vim-javascript'                                  " Better javascript support
+Plug 'mxw/vim-jsx'                                              " Hightlight JSX
+Plug 'leshill/vim-json'                                         " Better JSON support
+Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }  " Live markdown parsing
+Plug 'terryma/vim-multiple-cursors'                             " Sublime-like multiple cursors
+Plug 'mustache/vim-mustache-handlebars'                         " Better support for mustache and handlebars files
+Plug 'moll/vim-node'                                            " Better support for node modules
+Plug 'tpope/vim-repeat'                                         " Use dot operator with plugins
+Plug 'tpope/vim-surround'                                       " Commands to work with surroundings
+Plug 'tpope/vim-vinegar'                                        " Directory overview in a panel
+Plug 'evanmiller/nginx-vim-syntax'                              " Syntax highlighting for nginx files
+Plug 'vim-scripts/syntaxudev.vim'                               " Syntax highlighting for udev rules files
+call plug#end()
+
 " Local config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
